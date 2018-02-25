@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" class="no-js" xmlns:ng="http://angularjs.org" ng-app="app" ng-cloak>
+  <head>
+    <meta charset="utf-8">
+    <title>Shipping Prospects Portal</title>
+    <meta name="google" value="notranslate">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- build:css assets/css/site.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/pb-design-system/dist/css/design_system.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/nav.css"/>
+    <link href="bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- endbuild  -->
+
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_57.png" sizes="57x57">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_72.png" sizes="72x72">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_120.png" sizes="120x120">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_128.png" sizes="128x128">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_144.png" sizes="144x144">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_152.png" sizes="152x152">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_195.png" sizes="195x195">
+    <link rel="icon" type="image/png" href="assets/images/favicon/favicon_228.png" sizes="228x228">
+
+  </head>
+
+  <body ng-controller="AppController as app" class="site {{$state.current.data.bodyClass}}">
+
+    <header ui-view="header" pbds-header-shadow></header>
+    <div class="site-content" ui-view="content"></div>
+    <footer ui-view="footer"></footer>
+
+
+    <!-- build:vendorjs js/vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+
+    <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+
+    <script src="bower_components/pb-design-system/dist/js/pb.ds.components.js"></script>
+
+    <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
+    <script src="bower_components/alasql/dist/alasql.min.js"></script>
+    <!-- endbuild  -->
+
+    <script src="extrajs/svg-assets-cache.js"></script>
+    <script src="extrajs/papaparse.min.js"></script>
+
+    <!-- build:appjs js/app.js -->
+    <script src="modules/main/app.module.js"></script>
+    <script src="modules/main/app-config.js"></script>
+    <script src="modules/main/controllers/app.controller.js"></script>
+    <script src="modules/main/controllers/header.controller.js"></script>
+    <script src="modules/main/controllers/footer.controller.js"></script>
+
+
+    <script src="core/core.module.js"></script>
+    <script src="core/services/mock-data.factory.js"></script>
+
+    <!-- Prospects page module -->
+    <script src="modules/prospects/prospects.module.js"></script>
+    <script src="modules/prospects/prospects.routes.js"></script>
+    <script src="modules/prospects/controllers/prospects.controller.js"></script>
+    <script src="modules/prospects/controllers/filterEC.controller.js"></script>
+    <script src="modules/prospects/controllers/filterEO.controller.js"></script>
+    <script src="modules/prospects/controllers/filterDB.controller.js"></script>
+
+    <!-- Communication page module -->
+    <script src="modules/communication/communication.module.js"></script>
+    <script src="modules/communication/communication.routes.js"></script>
+    <script src="modules/communication/controllers/communication.controller.js"></script>
+    
+    <!-- Product page module -->
+    <script src="modules/product/product.module.js"></script>
+    <script src="modules/product/product.routes.js"></script>
+    <script src="modules/product/controllers/product.controller.js"></script>
+    
+    <!-- Sales page module -->
+    <script src="modules/sales/sales.module.js"></script>
+    <script src="modules/sales/sales.routes.js"></script>
+    <script src="modules/sales/controllers/sales.controller.js"></script>  
+
+    <!-- endbuild  -->
+
+  </body>
+
+</html>

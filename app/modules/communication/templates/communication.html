@@ -1,0 +1,204 @@
+<div class="splitview splitview-filled splitview-bordered">
+  <div class="container">
+    <div class="two-col-wrapper">
+      <div class="col-md-2 leftnav" ng-if="communication.displayNavigator" style="padding-left: 5px;">
+        <div class="row" style="position:fixed;background-color:#f0f0f0;margin-right: -30px;margin-left: -5px;">
+          <h4 class="pagetitle" style="margin-left:30px;text-align: center;">Send</h4>
+        </div>
+        <div headroom="" class="doc-side-nav headroom headroom-not-top" tolerance="0" offset="0" classes="{'initial':'','pinned':'','unpinned':'','top':'headroom-top','notTop':'headroom-not-top'}">
+          <nav class="hidden-print hidden-xs hidden-sm" role="tablist">
+            <ul class="nav">
+              <!--master here means scroll to the Top -->
+              <li><a du-smooth-scroll="existingClients" du-scrollspy ui-sref="communication({'#':'existingClients'})" href="" class="" ng-if="communication.byLocationAllowed">
+                  Notification</a></li>
+              <li><a du-smooth-scroll="existingOpportunity" du-scrollspy ui-sref="communication({'#':'existingOpportunity'})" href="" class="" ng-if="communication.byStatusAllowed">
+                  Email Notification</a></li>
+              <li><a du-smooth-scroll="shippingOpportunities" du-scrollspy ui-sref="communication({'#':'shippingOpportunities'})" href="" class="" ng-if="communication.byCarrierAllowed">
+                  Your account notification <br>(For shipping analytics)</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div ng-class="{'col-md-10 scroll-content main-content':communication.displayNavigator,
+                              'col-md-12':communication.byLocationAllowed || communication.byStatusAllowed || communication.byCarrierAllowed}">
+        <section id="existingClients">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-9" style="padding-left: 0px">
+                <h1 class="pagetitle" style="margin-left: 0px">Notification</h1>
+              </div>
+              <div class="col-md-3">
+                <h1>
+                  <a class="btn btn-link" date-range-picker href="" ng-model="communication.dateRangePicker.date" options="communication.dateRangePicker.options" aria-label="Date Picker">
+                      <i class="nc-icon-mini nc-fw ui-1_calendar-57" aria-hidden="true"></i>
+                      {{communication.dateRangePicker.displayDate()}}
+                      <i class="nc-icon-mini arrows-2_small-down" aria-hidden="true"></i>
+                    </a>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <form id="" novalidate>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card card-default category-widget">
+                        <div class="card-body" style="text-align: center;padding-top: 0px;padding-bottom: 0px;">
+                          <h2 class="category-widget-title" style="margin-top: 16px;">
+                            {{communication.totalEmailsSent || 0}}</h2>
+                          <p class="category-widget-description">Total Email's Sent</p>
+                        </div>
+                        <!--  <div class="card-footer" style="text-align: center;padding-top: 10px;padding-bottom: 10px;">
+                              <h4 class="category-widget-title" style="color: blue;">Export Details</h4>
+                            </div>-->
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card card-default category-widget">
+                        <div class="card-body" style="text-align: center;padding-top: 0px;padding-bottom: 0px;">
+                          <h2 class="category-widget-title" style="margin-top: 16px;">{{communication.delivered || 0}}
+                          </h2>
+                          <p class="category-widget-description">Email's Delivered</p>
+                        </div>
+                        <!--  <div class="card-footer" style="text-align: center;padding-top: 10px;padding-bottom: 10px;">
+                              <h4 class="category-widget-title" style="color: blue;">Export Details</h4>
+                            </div>-->
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card card-default category-widget">
+                        <div class="card-body" style="text-align: center;padding-top: 0px;padding-bottom: 0px;">
+                          <h2 class="category-widget-title" style="margin-top: 16px;">
+                            {{communication.unsubscribed || 0}}</h2>
+                          <p class="category-widget-description">Email's Unsubscribed</p>
+                        </div>
+                        <!--   <div class="card-footer" style="text-align: center;padding-top: 10px;padding-bottom: 10px;">
+                               <h4 class="category-widget-title" style="color: blue;">Re-send Emails</h4>
+                             </div>-->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card card-default category-widget">
+                        <div class="card-body" style="text-align: center;padding-top: 0px;padding-bottom: 0px;">
+                          <h2 class="category-widget-title" style="margin-top: 16px;">{{communication.opened || 0}}</h2>
+                          <p class="category-widget-description">Email's Opened</p>
+                        </div>
+                        <!--    <div class="card-footer" style="text-align: center;padding-top: 10px;padding-bottom: 10px;">
+                                <h4 class="category-widget-title" style="color: blue;">Re-send Emails</h4>
+                              </div>-->
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card card-default category-widget">
+                        <div class="card-body" style="text-align: center;padding-top: 0px;padding-bottom: 0px;">
+                          <h2 class="category-widget-title" style="margin-top: 16px;">{{communication.clicked || 0}}
+                          </h2>
+                          <p class="category-widget-description">Email's Clicked</p>
+                        </div>
+                        <!--  <div class="card-footer" style="text-align: center;padding-top: 10px;padding-bottom: 10px;">
+                              <h4 class="category-widget-title" style="color: blue;">Re-send Emails</h4>
+                            </div>-->
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="card card-shadowed">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h4 style="margin-top: 0px;margin-bottom: 0px;">Email Sent</h4>
+                      </div>
+                      <div class="card-body">
+                        <!--<canvas id="pie" class="chart chart-pie" chart-data="communication.statusPieGraph.data" chart-options="communication.statusPieGraph.options" chart-labels="communication.statusPieGraph.labels" chart-colors="communication.colors"></canvas>-->
+                        <canvas id="line" class="chart chart-line" chart-data="communication.emailSentGraph.data" chart-options="communication.emailSentGraph.options" chart-labels="communication.emailSentGraph.labels" chart-series="communication.emailSentGraph.series" chart-colors="communication.colors"
+                          ng-show="communication.emailSentGraph.labels.length>0"></canvas>
+                        <div ng-show="communication.emailSentGraph.labels.length == 0">No data available.</div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="col-md-7"></div>
+                      <div class="col-md-5" style="padding-left: 80px;padding-right: 0px;">
+                        <button class="btn btn-default" onclick="window.open('../modules/communication/communication.csv')"><i
+                            class="nc-icon-mini fw arrows-1_download"></i> Export CSV
+                          </button>
+                        <button class="btn btn-default"><i class="nc-icon-mini fw arrows-1_download"></i> Export SFDC
+                          </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <section id="existingOpportunity">
+          <div class="row">
+            <h1 class="pagetitle">Email Notification</h1>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="card card-shadowed">
+                  <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                    <h4 style="margin-top: 0px;margin-bottom: 0px;"></h4>
+                    <p style="margin-top: 0px;margin-bottom: 0px;color:#c0c0c0;font-size: 14px"></p>
+                  </div>
+                  <div class="card-body" style="text-align: center; height:300px;">
+                    <!--<canvas id="pie" class="chart chart-pie" chart-data="communication.statusPieGraph.data" chart-options="communication.statusPieGraph.options" chart-labels="communication.statusPieGraph.labels" chart-colors="communication.colors"></canvas>-->
+                    <!-- <canvas id="line" class="chart chart-line" chart-data="communication.line.data" chart-options="communication.line.options" chart-labels="communication.line.labels" chart-series="communication.line.series" chart-colors="communication.colors"></canvas> -->
+                    <b>No Data to Display</b>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="col-md-7"></div>
+                  <div class="col-md-5" style="padding-left: 80px;padding-right: 0px;">
+                    <!-- <button class="btn btn-default"><i class="nc-icon-mini fw arrows-1_download"></i> Export CSV</button>
+                      <button class="btn btn-default"><i class="nc-icon-mini fw arrows-1_download"></i> Export SFDC</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="shippingOpportunities">
+          <div class="row">
+            <h1 class="pagetitle">Your account notification</h1>
+          </div>
+          <form novalidate ng-if="communication.byCarrierAllowed">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="card card-shadowed">
+                    <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                      <h4 style="margin-top: 0px;margin-bottom: 0px;"></h4>
+                      <p style="margin-top: 0px;margin-bottom: 0px;color:#c0c0c0;font-size: 14px"></p>
+                    </div>
+                    <div class="card-body" style="text-align: center; height:300px;">
+                      <!-- <canvas id="line" class="chart chart-line" chart-data="communication.line.data" chart-options="communication.line.options" chart-labels="communication.line.labels" chart-series="communication.line.series" chart-colors="communication.colors"></canvas> -->
+                      <b>No Data to Display</b>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="col-md-7"></div>
+                    <div class="col-md-5" style="padding-left: 80px;padding-right: 0px;">
+                      <!-- <button class="btn btn-default"><i class="nc-icon-mini fw arrows-1_download"></i> Export CSV</button>
+                        <button class="btn btn-default"><i class="nc-icon-mini fw arrows-1_download"></i> Export SFDC</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>

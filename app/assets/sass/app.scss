@@ -1,0 +1,22 @@
+// import from DS bower component so you can use variables and mixins in your SCSS
+@import '../../bower_components/pb-design-system/sass/settings/variables';
+@import '../../bower_components/pb-design-system/sass/settings/mixins';
+// for example
+// .something {
+//   color: $pb-blue-500;
+// }
+
+// import scss partials from modules folder here
+@import '../../modules/tables/assets/sass/tables';
+@import '../../modules/home/assets/sass/home';
+
+
+header i.nc-icon-outline {
+  font-size: 20px;
+}
+
+.category-widget {
+  img {
+    min-height: 100px;
+  }
+}

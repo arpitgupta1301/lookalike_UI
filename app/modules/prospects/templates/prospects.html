@@ -1,0 +1,278 @@
+<div class="splitview splitview-filled splitview-bordered">
+  <div class="container">
+    <div class="two-col-wrapper">
+      <div class="col-md-3 leftnav" style="padding-left: 5px;">
+        <div class="row" style="position:fixed;background-color:#f0f0f0;margin-right: -30px;margin-left: -5px;">
+          <h4 class="pagetitle" style="margin-left:30px;">Find Prospects by</h4>
+        </div>
+        <div headroom="" class="doc-side-nav headroom headroom-not-top" tolerance="0" offset="0" classes="{'initial':'','pinned':'','unpinned':'','top':'headroom-top','notTop':'headroom-not-top'}">
+          <nav class="hidden-print hidden-xs hidden-sm" role="tablist">
+            <ul class="nav">
+              <!--master here means scroll to the Top -->
+              <li><a du-smooth-scroll="existingClients" du-scrollspy ui-sref="prospects({'#':'existingClients'})" href="" class="">
+                Look-a-likes of Shipping Customers<br>in Existing C Series Meter Customers </a></li>
+              <li><a du-smooth-scroll="existingOpportunity" du-scrollspy ui-sref="prospects({'#':'existingOpportunity'})" href="" class="">
+                Shipping Prospects in Open C Series<br>Opportunities</a></li>
+              <li><a du-smooth-scroll="shippingOpportunities" du-scrollspy ui-sref="prospects({'#':'shippingOpportunities'})" href="" class="">
+                External SMB Shipping Prospects</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-md-9 scroll-content main-content">
+        <section id="existingClients">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-10">
+                <h1 class="pagetitle" style="margin-left: 0px">Look-a-likes of Shipping Customers in Existing C Series Meter Customers</h1>
+              </div>
+              <div class="col-md-2">
+                <h1>
+                  <form class="form-inline">
+                    <div class="form-group dropdown">
+                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="prospects.filterEC(prospects.filterECList);">
+                        <i class="nc-icon-mini fw ui-2_filter"></i> Filter <i class="nc-icon-mini arrows-3_small-down"></i>
+                      </button>
+                    </div>
+                  </form>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <form id="" novalidate>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h5 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Total C Series Customers</h5>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">24,565</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h5 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Total Shipping Activation</h5>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">1,342</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h5 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Look-a-Likes</h5>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;color:#cf0989">{{prospects.numberOfOpportunitiesEC}}</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="card card-shadowed">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h4 style="margin-top: 0px;margin-bottom: 0px;">Conversion Probability</h4>
+                        <p style="margin-top: 0px;margin-bottom: 0px;color:#c0c0c0;font-size: 14px"></p>
+                      </div>
+                      <div class="card-body">
+                        <canvas id="bar" class="chart chart-bar" chart-data="prospects.ecBarGraph.data" chart-options="prospects.ecBarGraph.options" chart-labels="prospects.ecBarGraph.labels" chart-colors="prospects.ecBarGraph.colors" chart-click="prospects.ecBarGraph.click"></canvas>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="col-md-5"></div>
+                      <div class="col-md-7" style="padding-left: 160px;padding-right: 0px;">
+                        <button class="btn btn-default"  ng-click="prospects.downloadCSV('existingCSeriesCustomers', prospects.filterECParams)"><i class="nc-icon-mini fw arrows-1_download"></i> Export CSV</button>
+                        <button class="btn btn-default"><i class="nc-icon-mini fw arrows-1_download"></i> Export SFDC</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <section id="existingOpportunity">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-10">
+                <h1 class="pagetitle" style="margin-left: 0px">Shipping Prospects in Open C Series Opportunities</h1>
+              </div>
+              <div class="col-md-2">
+                <h1>
+                  <form class="form-inline">
+                    <div class="form-group dropdown">
+                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="prospects.filterEO(prospects.filterEOList);">
+                            <i class="nc-icon-mini fw ui-2_filter"></i> Filter <i class="nc-icon-mini arrows-3_small-down"></i>
+                          </button>
+                    </div>
+                  </form>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <form id="" novalidate>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="col-md-3">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h6 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Number Of Opportunities</h6>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">52,333</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h6 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Total C Series Customers</h6>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">24,565</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h6 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Total Shipping Activation</h6>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">1,342</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card card-default" style="height: 130px;">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h6 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Look-a-Likes</h6>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;padding-top:19px;color:#cf0989">{{prospects.numberOfOpportunitiesEO}}</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="card card-shadowed">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h4 style="margin-top: 0px;margin-bottom: 0px;">Conversion Probability</h4>
+                        <p style="margin-top: 0px;margin-bottom: 0px;color:#c0c0c0;font-size: 14px"></p>
+                      </div>
+                      <div class="card-body">
+                        <canvas id="bar" class="chart chart-bar" chart-data="prospects.eoBarGraph.data" chart-options="prospects.eoBarGraph.options" chart-labels="prospects.eoBarGraph.labels" chart-colors="prospects.eoBarGraph.colors" chart-click="prospects.eoBarGraph.click"></canvas>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="col-md-5"></div>
+                      <div class="col-md-7" style="padding-left: 160px;padding-right: 0px;">
+                        <button class="btn btn-default" ng-click="prospects.downloadCSV('currentCSeriesOpportunitiesInSFDC', prospects.filterEOParams)"><i class="nc-icon-mini fw arrows-1_download"></i> Export CSV</button>
+                        <button class="btn btn-default"><i class="nc-icon-mini fw arrows-1_download"></i> Export SFDC</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </section>
+
+        <section id="shippingOpportunities">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-10">
+                <h1 class="pagetitle" style="margin-left: 0px">External SMB Shipping Prospects</h1>
+              </div>
+              <div class="col-md-2">
+                <h1>
+                  <form class="form-inline">
+                    <div class="form-group dropdown">
+                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="prospects.filterDB(prospects.filterDBList);">
+                                <i class="nc-icon-mini fw ui-2_filter"></i> Filter <i class="nc-icon-mini arrows-3_small-down"></i>
+                              </button>
+                    </div>
+                  </form>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <form id="" novalidate>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="col-md-3">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h6 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Number of Companies in DNB</h6>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">22 Million</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h6 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Total C Series Customers</h6>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">24,565</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card card-default">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h6 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Total Shipping Activation</h6>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">1,342</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card card-default" style="height: 130px;">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h6 style="margin-top: 0px;margin-bottom: 0px;text-align: center;">Look-a-Likes</h6>
+                      </div>
+                      <div class="card-body" style="padding-top: 10px;padding-bottom: 20px;">
+                        <h2 style="margin-top: 0px;margin-bottom: 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;color:#cf0989;padding-top:19px;">{{prospects.numberOfOpportunitiesDB}}</h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="card card-shadowed">
+                      <div class="card-heading" style="border-bottom: 0px solid #e1e1e1;">
+                        <h4 style="margin-top: 0px;margin-bottom: 0px;">Conversion Probability</h4>
+                        <p style="margin-top: 0px;margin-bottom: 0px;color:#c0c0c0;font-size: 14px"></p>
+                      </div>
+                      <div class="card-body">
+                        <canvas id="bar" class="chart chart-bar" chart-data="prospects.dbBarGraph.data" chart-options="prospects.dbBarGraph.options" chart-labels="prospects.dbBarGraph.labels" chart-colors="prospects.dbBarGraph.colors" chart-click="prospects.dbBarGraph.click"></canvas>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="col-md-5"></div>
+                      <div class="col-md-7" style="padding-left: 160px;padding-right: 0px;">
+                        <button class="btn btn-default" ng-click="prospects.downloadCSV('shippingProspectsInDNBDatabase', prospects.filterDBParams)"><i class="nc-icon-mini fw arrows-1_download"></i> Export CSV</button>
+                        <button class="btn btn-default"><i class="nc-icon-mini fw arrows-1_download"></i> Export SFDC</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>

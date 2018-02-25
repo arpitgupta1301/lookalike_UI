@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Home Screen</h1>
+      <p>Click a card to open a modal.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" ng-repeat="item in home.data">
+
+      <div class="card card-default category-widget" ng-click="home.open(item)" >
+        <div class="card-body category-widget-icon">
+          <img class="img-responsive center-block" ng-src="{{item.image}}">
+        </div>
+        <div class="card-footer">
+          <h4 class="category-widget-title">{{item.name}}</h4>
+          <p class="category-widget-description">
+           {{item.description}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</div>
