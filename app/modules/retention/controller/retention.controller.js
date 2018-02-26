@@ -195,21 +195,28 @@
       };
 
       _this.onClick = function (points, elements) {
-        var obj = {};
-        obj[points[0]._chart.canvas.id] = points[0]._model.label
-        angular.extend(_this.commonFilter, obj);
-        _this.getDataAsPerCurrentFilters(points[0]._chart.canvas.id, points[0]['$datalabels']._index);
+        if (points.length > 0) {
+          var obj = {};
+          obj[points[0]._chart.canvas.id] = points[0]._model.label
+          angular.extend(_this.commonFilter, obj);
+          _this.getDataAsPerCurrentFilters(points[0]._chart.canvas.id, points[0]['$datalabels']._index);
+        }
+      };
+
+      _this.getFilter = function (id) {
+        var filter = {
+          current: id,
+          commonFilter: angular.extend({}, _this.commonFilter)
+        };
+        delete filter.commonFilter[id];
+        console.log(filter);
+        return filter;
       };
 
       _this.getDataAsPerCurrentFilters = function (id, index) {
-        var filter = {
-          current: 'd_category',
-          commonFilter: _this.commonFilter
-        };
-
         if (id !== 'lease_expiry') {
           $http.post('https://lookalike-service-temp-dot-datatest-148118.appspot.com/activeLeases',
-            angular.extend({}, filter, {current: 'lease_expiry'})).then(
+            angular.extend({}, _this.getFilter('lease_expiry'), {current: 'lease_expiry'})).then(
             function (response) {
               if (response.data) {
                 var labels = [];
@@ -239,7 +246,7 @@
 
         if (id !== 'probability') {
           $http.post('https://lookalike-service-temp-dot-datatest-148118.appspot.com/activeLeases',
-            angular.extend({}, filter, {current: 'probability'})).then(
+            angular.extend({}, _this.getFilter('probability'), {current: 'probability'})).then(
             function (response) {
               if (response.data) {
                 var labels = [];
@@ -269,7 +276,7 @@
 
         if (id !== 'status') {
           $http.post('https://lookalike-service-temp-dot-datatest-148118.appspot.com/activeLeases',
-            angular.extend({}, filter, {current: 'status'})).then(
+            angular.extend({}, _this.getFilter('status'), {current: 'status'})).then(
             function (response) {
               if (response.data) {
                 var labels = [];
@@ -298,8 +305,9 @@
         }
 
         if (id !== 'd_category') {
+
           $http.post('https://lookalike-service-temp-dot-datatest-148118.appspot.com/activeLeases',
-            angular.extend({}, filter, {current: 'd_category'})).then(
+            angular.extend({}, _this.getFilter('d_category'), {current: 'd_category'})).then(
             function (response) {
               if (response.data) {
                 var labels = [];
@@ -329,7 +337,7 @@
 
         if (id !== 'type') {
           $http.post('https://lookalike-service-temp-dot-datatest-148118.appspot.com/activeLeases',
-            angular.extend({}, filter, {current: 'type'})).then(
+            angular.extend({}, _this.getFilter('type'), {current: 'type'})).then(
             function (response) {
               if (response.data) {
                 var labels = [];
@@ -359,7 +367,7 @@
 
         if (id !== 'c_group') {
           $http.post('https://lookalike-service-temp-dot-datatest-148118.appspot.com/activeLeases',
-            angular.extend({}, filter, {current: 'c_group'})).then(
+            angular.extend({}, _this.getFilter('c_group'), {current: 'c_group'})).then(
             function (response) {
               if (response.data) {
                 var labels = [];
@@ -386,7 +394,6 @@
             _this.customeGroup.colors[index] = "rgba(31,117,254,1)";
           });
         }
-        console.log(_this.selectedBarIndex);
       }
       _this.getDataAsPerCurrentFilters();
     });
