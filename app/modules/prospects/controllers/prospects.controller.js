@@ -491,25 +491,29 @@
       _this.getDBBarGraphData(_this.filterDBParams);
 
       // DownloadCSV
-      _this.downloadCSV = function (type, filters) {
-        var name = type === 'existingCSeriesCustomers'
-          ? 'csd'
-          : type === 'currentCSeriesOpportunitiesInSFDC' ? 'opp' : 'dnb';
+      _this.downloadCSV = function(type, filters) {
+        var name = type === 'existingCSeriesCustomers' ?
+         'csd' :
+          type === 'currentCSeriesOpportunitiesInSFDC' ? 'opp' : 'dnb';
         var url = 'https://lookalike-service-dot-datatest-148118.appspot.com/getCSV/' + name;
         $http.post(url, filters).then(
-          function (response, status, headers, config) {
-            var anchor = angular.element('<a/>');
-            anchor
-              .attr({
-                href:
-                'data:attachment/csv;charset=utf-8,' +
-                encodeURI(response.data),
-                target: '_blank',
-                download: type + '.csv'
-              })[0]
-              .click();
+          function(response, status, headers, config) {
+            var blob = new Blob([response.data], {
+              type: 'text/csv'
+            });
+            var filename = type + '.csv';
+            if (window.navigator.msSaveOrOpenBlob) {
+              window.navigator.msSaveBlob(blob, filename);
+            } else {
+              var elem = window.document.createElement('a');
+              elem.href = window.URL.createObjectURL(blob);
+              elem.download = filename;
+              document.body.appendChild(elem);
+              elem.click();
+              document.body.removeChild(elem);
+            }
           },
-          function (data, status, headers, config) {
+          function(data, status, headers, config) {
             // alert('error');
           }
         );
