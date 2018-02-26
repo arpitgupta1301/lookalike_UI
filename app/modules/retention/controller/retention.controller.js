@@ -206,6 +206,7 @@
           current: 'd_category',
           commonFilter: _this.commonFilter
         };
+
         if (id !== 'lease_expiry') {
           $http.post('https://lookalike-service-temp-dot-datatest-148118.appspot.com/activeLeases',
             angular.extend({}, filter, {current: 'lease_expiry'})).then(
@@ -219,10 +220,10 @@
                 }
                 _this.monthToExpiry.data = values;
                 _this.monthToExpiry.labels = labels;
-                if (_this.selectedBarIndex[id] != -1) {
-                  _this.customeGroup.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
-                    'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
-                  _this.customeGroup.colors[_this.selectedBarIndex[id]] = "rgba(31,117,254,1)";
+                _this.monthToExpiry.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
+                  'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
+                if (_this.selectedBarIndex['lease_expiry'] != -1) {
+                  _this.monthToExpiry.colors[_this.selectedBarIndex['lease_expiry']] = "rgba(31,117,254,1)";
                 }
               }
             }, function (error) {
@@ -249,10 +250,10 @@
                 }
                 _this.cancellation.data = values;
                 _this.cancellation.labels = labels;
-                if (_this.selectedBarIndex[id] != -1) {
-                  _this.customeGroup.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
-                    'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
-                  _this.customeGroup.colors[_this.selectedBarIndex[id]] = "rgba(31,117,254,1)";
+                _this.cancellation.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
+                  'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
+                if (_this.selectedBarIndex['probability'] != -1) {
+                  _this.cancellation.colors[_this.selectedBarIndex['probability']] = "rgba(31,117,254,1)";
                 }
               }
             }, function (error) {
@@ -279,10 +280,10 @@
                 }
                 _this.activityStatus.data = values;
                 _this.activityStatus.labels = labels;
-                if (_this.selectedBarIndex[id] != -1) {
-                  _this.customeGroup.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
-                    'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
-                  _this.customeGroup.colors[_this.selectedBarIndex[id]] = "rgba(31,117,254,1)";
+                _this.activityStatus.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
+                  'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
+                if (_this.selectedBarIndex['status'] != -1) {
+                  _this.activityStatus.colors[_this.selectedBarIndex['status']] = "rgba(31,117,254,1)";
                 }
               }
             }, function (error) {
@@ -309,10 +310,10 @@
                 }
                 _this.digitalIndex.data = values;
                 _this.digitalIndex.labels = labels;
-                if (_this.selectedBarIndex[id] != -1) {
-                  _this.customeGroup.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
-                    'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
-                  _this.customeGroup.colors[_this.selectedBarIndex[id]] = "rgba(31,117,254,1)";
+                _this.digitalIndex.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
+                  'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
+                if (_this.selectedBarIndex['d_category'] != -1) {
+                  _this.digitalIndex.colors[_this.selectedBarIndex['d_category']] = "rgba(31,117,254,1)";
                 }
               }
             }, function (error) {
@@ -339,10 +340,10 @@
                 }
                 _this.meterType.data = values;
                 _this.meterType.labels = labels;
-                if (_this.selectedBarIndex[id] != -1) {
-                  _this.customeGroup.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
-                    'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
-                  _this.customeGroup.colors[_this.selectedBarIndex[id]] = "rgba(31,117,254,1)";
+                _this.meterType.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
+                  'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
+                if (_this.selectedBarIndex['type'] != -1) {
+                  _this.meterType.colors[_this.selectedBarIndex['type']] = "rgba(31,117,254,1)";
                 }
               }
             }, function (error) {
@@ -369,10 +370,10 @@
                 }
                 _this.customeGroup.data = values;
                 _this.customeGroup.labels = labels;
-                if (_this.selectedBarIndex[id] != -1) {
-                  _this.customeGroup.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
-                    'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
-                  _this.customeGroup.colors[_this.selectedBarIndex[id]] = "rgba(31,117,254,1)";
+                _this.customeGroup.colors = ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
+                  'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'];
+                if (_this.selectedBarIndex['c_group'] != -1) {
+                  _this.customeGroup.colors[_this.selectedBarIndex['c_group']] = "rgba(31,117,254,1)";
                 }
               }
             }, function (error) {
@@ -385,7 +386,9 @@
             _this.customeGroup.colors[index] = "rgba(31,117,254,1)";
           });
         }
+        console.log(_this.selectedBarIndex);
       }
       _this.getDataAsPerCurrentFilters();
     });
 })();
+
