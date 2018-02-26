@@ -1,15 +1,13 @@
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('pb.ds.prospects')
-    .controller('ProspectsController', function(
-      $log,
-      $uibModal,
-      $http,
-      $scope,
-      $interval
-    ) {
+    .controller('ProspectsController', function ($log,
+                                                 $uibModal,
+                                                 $http,
+                                                 $scope,
+                                                 $interval) {
       var _this = this;
 
       _this.colors = [
@@ -37,14 +35,14 @@
       _this.ecBarGraphLabels = [];
       _this.ecBarGraphCount = [];
 
-      _this.getECBarGraphData = function(param) {
+      _this.getECBarGraphData = function (param) {
         $http
           .post(
             'https://lookalike-service-dot-datatest-148118.appspot.com/getCSD/',
             param
           )
           .then(
-            function(response, status, headers, config) {
+            function (response, status, headers, config) {
               var data = response.data;
               _this.numberOfOpportunitiesEC = 0;
               _this.ecBarGraphLabels = [];
@@ -81,16 +79,21 @@
               }
               _this.getECBarGraph();
             },
-            function(data, status, headers, config) {
+            function (data, status, headers, config) {
               // alert('error');
             }
           );
       };
 
-      _this.getECBarGraph = function() {
+      _this.getECBarGraph = function () {
         _this.ecBarGraph = {
           labels: _this.ecBarGraphLabels,
           options: {
+            plugins: {
+              datalabels: {
+                display: false
+              }
+            },
             scaleShowGridLines: false,
             scales: {
               yAxes: [
@@ -98,7 +101,7 @@
                   scaleLabel: {
                     display: true,
                     labelString:
-                      'Look-a-Likes (' + _this.numberOfOpportunitiesEC + ')'
+                    'Look-a-Likes (' + _this.numberOfOpportunitiesEC + ')'
                   },
                   gridLines: {
                     display: false
@@ -120,7 +123,7 @@
           },
           data: [_this.ecBarGraphCount],
           colors: _this.colors,
-          click: function(points, evt) {
+          click: function (points, evt) {
             //
           }
         };
@@ -128,59 +131,59 @@
 
       _this.filterECParams = {};
 
-      _this.filterEC = function(item) {
+      _this.filterEC = function (item) {
         $uibModal
           .open({
             templateUrl: 'modules/prospects/templates/filterEC.html',
             controller: 'FilterECController as filter',
             size: 'md',
             resolve: {
-              itemResolve: function() {
+              itemResolve: function () {
                 return item;
               }
             }
           })
           .result.then(
-            function(response) {
-              _this.filterECParams = {};
-              _this.filterECList = response;
-              var sampleEC = [];
-              for (var i = 0; i < _this.filterECList.sicFilter.length; i++) {
-                if (_this.filterECList.sicFilter[i].isSelected) {
-                  if (_this.filterECList.sicFilter[i].name === 'Others') {
-                    sampleEC.push('Others');
-                  } else {
-                    sampleEC.push(_this.filterECList.sicFilter[i].name + '\\r');
-                  }
+          function (response) {
+            _this.filterECParams = {};
+            _this.filterECList = response;
+            var sampleEC = [];
+            for (var i = 0; i < _this.filterECList.sicFilter.length; i++) {
+              if (_this.filterECList.sicFilter[i].isSelected) {
+                if (_this.filterECList.sicFilter[i].name === 'Others') {
+                  sampleEC.push('Others');
+                } else {
+                  sampleEC.push(_this.filterECList.sicFilter[i].name + '\\r');
                 }
               }
-              if (sampleEC.length > 0) {
-                _this.filterECParams.sicFilter = [];
-                _this.filterECParams.sicFilter = angular.copy(sampleEC);
-              }
-              for (var i = 0; i < _this.filterECList.otherFilter.length; i++) {
-                if (_this.filterECList.otherFilter[i].isSelected) {
-                  if (
-                    _this.filterECList.otherFilter[i].name === 'Label Printer'
-                  ) {
-                    _this.filterECParams.label_printer;
-                    _this.filterECParams.label_printer = 'Yes';
-                  }
-                  if (
-                    _this.filterECList.otherFilter[i].name ===
-                    'Multicarrier Subscription'
-                  ) {
-                    _this.filterECParams.multicarrier_subscription;
-                    _this.filterECParams.multicarrier_subscription = 'Yes';
-                  }
-                }
-              }
-              _this.getECBarGraphData(_this.filterECParams);
-            },
-            function(error) {
-              // console.log(error);
             }
-          );
+            if (sampleEC.length > 0) {
+              _this.filterECParams.sicFilter = [];
+              _this.filterECParams.sicFilter = angular.copy(sampleEC);
+            }
+            for (var i = 0; i < _this.filterECList.otherFilter.length; i++) {
+              if (_this.filterECList.otherFilter[i].isSelected) {
+                if (
+                  _this.filterECList.otherFilter[i].name === 'Label Printer'
+                ) {
+                  _this.filterECParams.label_printer;
+                  _this.filterECParams.label_printer = 'Yes';
+                }
+                if (
+                  _this.filterECList.otherFilter[i].name ===
+                  'Multicarrier Subscription'
+                ) {
+                  _this.filterECParams.multicarrier_subscription;
+                  _this.filterECParams.multicarrier_subscription = 'Yes';
+                }
+              }
+            }
+            _this.getECBarGraphData(_this.filterECParams);
+          },
+          function (error) {
+            // console.log(error);
+          }
+        );
       };
 
       _this.getECBarGraphData(_this.filterECParams);
@@ -191,14 +194,14 @@
       _this.eoBarGraphLabels = [];
       _this.eoBarGraphCount = [];
 
-      _this.getEOBarGraphData = function(param) {
+      _this.getEOBarGraphData = function (param) {
         $http
           .post(
             'https://lookalike-service-dot-datatest-148118.appspot.com/getOpportunity/',
             param
           )
           .then(
-            function(response, status, headers, config) {
+            function (response, status, headers, config) {
               var data = response.data;
               _this.numberOfOpportunitiesEO = 0;
               _this.eoBarGraphLabels = [];
@@ -235,16 +238,21 @@
               }
               _this.getEOBarGraph();
             },
-            function(data, status, headers, config) {
+            function (data, status, headers, config) {
               // alert('error');
             }
           );
       };
 
-      _this.getEOBarGraph = function() {
+      _this.getEOBarGraph = function () {
         _this.eoBarGraph = {
           labels: _this.eoBarGraphLabels,
           options: {
+            plugins: {
+              datalabels: {
+                display: false
+              }
+            },
             scaleShowGridLines: false,
             scales: {
               yAxes: [
@@ -252,7 +260,7 @@
                   scaleLabel: {
                     display: true,
                     labelString:
-                      'Look-a-Likes (' + _this.numberOfOpportunitiesEO + ')'
+                    'Look-a-Likes (' + _this.numberOfOpportunitiesEO + ')'
                   },
                   gridLines: {
                     display: false
@@ -274,7 +282,7 @@
           },
           data: [_this.eoBarGraphCount],
           colors: _this.colors,
-          click: function(points, evt) {
+          click: function (points, evt) {
             //
           }
         };
@@ -282,60 +290,60 @@
 
       _this.filterEOParams = {};
 
-      _this.filterEO = function(item) {
+      _this.filterEO = function (item) {
         $uibModal
           .open({
             templateUrl: 'modules/prospects/templates/filterEO.html',
             controller: 'FilterEOController as filter',
             size: 'md',
             resolve: {
-              itemResolve: function() {
+              itemResolve: function () {
                 return item;
               }
             }
           })
           .result.then(
-            function(response) {
-              _this.filterEOParams = {};
-              _this.filterEOList = response;
-              var sampleEO = [];
-              for (var i = 0; i < _this.filterEOList.sicFilter.length; i++) {
-                if (_this.filterEOList.sicFilter[i].isSelected) {
-                  if (_this.filterEOList.sicFilter[i].name === 'Others') {
-                    sampleEO.push('Others');
-                  } else {
-                    sampleEO.push(_this.filterEOList.sicFilter[i].name );
-                  }
+          function (response) {
+            _this.filterEOParams = {};
+            _this.filterEOList = response;
+            var sampleEO = [];
+            for (var i = 0; i < _this.filterEOList.sicFilter.length; i++) {
+              if (_this.filterEOList.sicFilter[i].isSelected) {
+                if (_this.filterEOList.sicFilter[i].name === 'Others') {
+                  sampleEO.push('Others');
+                } else {
+                  sampleEO.push(_this.filterEOList.sicFilter[i].name);
                 }
               }
-              if (sampleEO.length > 0) {
-                _this.filterEOParams.sicFilter = [];
-                _this.filterEOParams.sicFilter = angular.copy(sampleEO);
-              }
-              for (var i = 0; i < _this.filterEOList.otherFilter.length; i++) {
-                if (_this.filterEOList.otherFilter[i].isSelected) {
-                  if (
-                    _this.filterEOList.otherFilter[i].name ===
-                    'Existing Customers'
-                  ) {
-                    _this.filterEOParams.existing_customer;
-                    _this.filterEOParams.existing_customer = 'Yes';
-                  }
-                  if (
-                    _this.filterEOList.otherFilter[i].name ===
-                    'Non Existing Customers'
-                  ) {
-                    _this.filterEOParams.non_existing_customer;
-                    _this.filterEOParams.non_existing_customer = 'Yes';
-                  }
-                }
-              }
-              _this.getEOBarGraphData(_this.filterEOParams);
-            },
-            function(error) {
-              // console.log(error);
             }
-          );
+            if (sampleEO.length > 0) {
+              _this.filterEOParams.sicFilter = [];
+              _this.filterEOParams.sicFilter = angular.copy(sampleEO);
+            }
+            for (var i = 0; i < _this.filterEOList.otherFilter.length; i++) {
+              if (_this.filterEOList.otherFilter[i].isSelected) {
+                if (
+                  _this.filterEOList.otherFilter[i].name ===
+                  'Existing Customers'
+                ) {
+                  _this.filterEOParams.existing_customer;
+                  _this.filterEOParams.existing_customer = 'Yes';
+                }
+                if (
+                  _this.filterEOList.otherFilter[i].name ===
+                  'Non Existing Customers'
+                ) {
+                  _this.filterEOParams.non_existing_customer;
+                  _this.filterEOParams.non_existing_customer = 'Yes';
+                }
+              }
+            }
+            _this.getEOBarGraphData(_this.filterEOParams);
+          },
+          function (error) {
+            // console.log(error);
+          }
+        );
       };
 
       _this.getEOBarGraphData(_this.filterEOParams);
@@ -346,14 +354,14 @@
       _this.dbBarGraphLabels = [];
       _this.dbBarGraphCount = [];
 
-      _this.getDBBarGraphData = function(param) {
+      _this.getDBBarGraphData = function (param) {
         $http
           .post(
             'https://lookalike-service-dot-datatest-148118.appspot.com/getDNB/',
             param
           )
           .then(
-            function(response, status, headers, config) {
+            function (response, status, headers, config) {
               var data = response.data;
               _this.numberOfOpportunitiesDB = 0;
               _this.dbBarGraphLabels = [];
@@ -390,16 +398,21 @@
               }
               _this.getDBBarGraph();
             },
-            function(data, status, headers, config) {
+            function (data, status, headers, config) {
               // alert('error');
             }
           );
       };
 
-      _this.getDBBarGraph = function() {
+      _this.getDBBarGraph = function () {
         _this.dbBarGraph = {
           labels: _this.dbBarGraphLabels,
           options: {
+            plugins: {
+              datalabels: {
+                display: false
+              }
+            },
             scaleShowGridLines: false,
             scales: {
               yAxes: [
@@ -407,7 +420,7 @@
                   scaleLabel: {
                     display: true,
                     labelString:
-                      'Look-a-Likes (' + _this.numberOfOpportunitiesDB + ')'
+                    'Look-a-Likes (' + _this.numberOfOpportunitiesDB + ')'
                   },
                   gridLines: {
                     display: false
@@ -429,7 +442,7 @@
           },
           data: [_this.dbBarGraphCount],
           colors: _this.colors,
-          click: function(points, evt) {
+          click: function (points, evt) {
             //
           }
         };
@@ -437,66 +450,66 @@
 
       _this.filterDBParams = {};
 
-      _this.filterDB = function(item) {
+      _this.filterDB = function (item) {
         $uibModal
           .open({
             templateUrl: 'modules/prospects/templates/filterDB.html',
             controller: 'FilterDBController as filter',
             size: 'md',
             resolve: {
-              itemResolve: function() {
+              itemResolve: function () {
                 return item;
               }
             }
           })
           .result.then(
-            function(response) {
-              _this.filterDBParams = {};
-              _this.filterDBList = response;
-              var sampleDB = [];
-              for (var i = 0; i < _this.filterDBList.sicFilter.length; i++) {
-                if (_this.filterDBList.sicFilter[i].isSelected) {
-                  if (_this.filterDBList.sicFilter[i].name === 'Others') {
-                    sampleDB.push('Others');
-                  } else {
-                    sampleDB.push(_this.filterDBList.sicFilter[i].name + '\\r');
-                  }
+          function (response) {
+            _this.filterDBParams = {};
+            _this.filterDBList = response;
+            var sampleDB = [];
+            for (var i = 0; i < _this.filterDBList.sicFilter.length; i++) {
+              if (_this.filterDBList.sicFilter[i].isSelected) {
+                if (_this.filterDBList.sicFilter[i].name === 'Others') {
+                  sampleDB.push('Others');
+                } else {
+                  sampleDB.push(_this.filterDBList.sicFilter[i].name + '\\r');
                 }
               }
-              if (sampleDB.length > 0) {
-                _this.filterDBParams.sicFilter = [];
-                _this.filterDBParams.sicFilter = angular.copy(sampleDB);
-              }
-              _this.getDBBarGraphData(_this.filterDBParams);
-            },
-            function(error) {
-              // console.log(error);
             }
-          );
+            if (sampleDB.length > 0) {
+              _this.filterDBParams.sicFilter = [];
+              _this.filterDBParams.sicFilter = angular.copy(sampleDB);
+            }
+            _this.getDBBarGraphData(_this.filterDBParams);
+          },
+          function (error) {
+            // console.log(error);
+          }
+        );
       };
 
       _this.getDBBarGraphData(_this.filterDBParams);
 
       // DownloadCSV
-      _this.downloadCSV = function(type, filters) {
+      _this.downloadCSV = function (type, filters) {
         var name = type === 'existingCSeriesCustomers'
-              ? 'csd'
-              : type === 'currentCSeriesOpportunitiesInSFDC' ? 'opp' : 'dnb';
-	var url = 'https://lookalike-service-dot-datatest-148118.appspot.com/getCSV/' + name;
+          ? 'csd'
+          : type === 'currentCSeriesOpportunitiesInSFDC' ? 'opp' : 'dnb';
+        var url = 'https://lookalike-service-dot-datatest-148118.appspot.com/getCSV/' + name;
         $http.post(url, filters).then(
-	     function(response, status, headers, config) {
+          function (response, status, headers, config) {
             var anchor = angular.element('<a/>');
             anchor
               .attr({
                 href:
-                  'data:attachment/csv;charset=utf-8,' +
-                  encodeURI(response.data),
+                'data:attachment/csv;charset=utf-8,' +
+                encodeURI(response.data),
                 target: '_blank',
                 download: type + '.csv'
               })[0]
               .click();
           },
-          function(data, status, headers, config) {
+          function (data, status, headers, config) {
             // alert('error');
           }
         );

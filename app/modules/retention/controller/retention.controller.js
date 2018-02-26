@@ -30,7 +30,6 @@
       ];
 
       _this.commonFilter = {};
-      _this.totalLeases = 0;
       _this.monthToExpiry = {
         labels: ['3M', '6M', '12M', '18M'],
         colors: ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'],
@@ -46,16 +45,25 @@
               },
               anchor: 'end',
               align: 'start',
-              offset: 10
+              offset: 10,
+              display: function (context) {
+                return context.dataset.data[context.dataIndex] >= 10000; // or >= 1 or ...
+              }
             }
           },
           scales: {
             xAxes: [{
               barPercentage: 0.4
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                stepSize: 10000
+              }
             }]
           }
         }
-      }
+      };
       _this.meterType = {
         labels: ['BOL', 'MOL', 'TOL'],
         colors: ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)',
@@ -70,8 +78,28 @@
               },
               anchor: 'end',
               align: 'start',
-              offset: 10
+              offset: 10,
+              display: function (context) {
+                return context.dataset.data[context.dataIndex] >= 10000; // or >= 1 or ...
+              }
             }
+          },
+          scales: {
+            xAxes: [{
+              stacked: false,
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                min: 0,
+                autoSkip: false
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                stepSize: 10000
+              }
+            }]
           }
         }
       };
@@ -87,10 +115,30 @@
               font: {
                 weight: 'bold'
               },
+              display: function (context) {
+                return context.dataset.data[context.dataIndex] >= 10000; // or >= 1 or ...
+              },
               anchor: 'end',
               align: 'start',
               offset: 10
             }
+          },
+          scales: {
+            xAxes: [{
+              stacked: false,
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                min: 0,
+                autoSkip: false
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                stepSize: 10000
+              }
+            }]
           }
         }
       };
@@ -108,12 +156,29 @@
               },
               anchor: 'end',
               align: 'start',
-              offset: 10
+              offset: 10,
+              display: function (context) {
+                return context.dataset.data[context.dataIndex] >= 10000; // or >= 1 or ...
+              }
             }
           },
           scales: {
             xAxes: [{
-              barPercentage: 0.4
+              barPercentage: 0.4,
+              stacked: false,
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                min: 0,
+                autoSkip: false
+              }
+            }],
+
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                stepSize: 10000
+              }
             }]
           }
         }
@@ -132,12 +197,28 @@
               },
               anchor: 'end',
               align: 'start',
-              offset: 10
+              offset: 10,
+              display: function (context) {
+                return context.dataset.data[context.dataIndex] >= 10000; // or >= 1 or ...
+              }
             }
           },
           scales: {
             xAxes: [{
-              barPercentage: 0.4
+              barPercentage: 0.4,
+              stacked: false,
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                min: 0,
+                autoSkip: false
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                stepSize: 10000
+              }
             }]
           }
         }
@@ -156,12 +237,28 @@
               },
               anchor: 'end',
               align: 'start',
-              offset: 10
+              offset: 10,
+              display: function (context) {
+                return context.dataset.data[context.dataIndex] >= 10000; // or >= 1 or ...
+              }
             }
           },
           scales: {
             xAxes: [{
+              stacked: false,
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                min: 0,
+                autoSkip: false
+              },
               barPercentage: 0.4
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                stepSize: 10000
+              }
             }]
           }
         }
