@@ -1,0 +1,135 @@
+<div class="splitview splitview-filled splitview-bordered">
+  <div class="container">
+    <div class="row row-eq-height" style="margin-bottom: 50px">
+      <div class="col-md-6 col-md-offset-3">
+        <h3 align="center">Total Meter Leases In Transactable Window</h3>
+        <div style="border:2px solid black; text-align: center;">
+          <h2>1000</h2>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div style="padding: 50px 10px;text-align: center;">
+          <button class="btn-link" style="margin-bottom: 20px" ng-click="retention.resetFilters()"><span
+            style="font-weight: bold">Reset All Filters</span>
+          </button>
+          <button class="btn btn-default" onclick="window.open('../modules/communication/communication.csv')"><i
+            class="nc-icon-mini fw arrows-1_download"></i> Export CSV
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 50px">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-heading">
+            <h4>Months to Expiry (# of Meters leases expiring in 3, 6, 12 & 18 Months)</h4>
+          </div>
+          <div class="card-body">
+            <canvas id="lease_expiry" class="chart chart-bar" chart-colors="retention.monthToExpiry.colors"
+                    chart-options="retention.monthToExpiry.options"
+                    chart-click="retention.onClick"
+                    chart-data="retention.monthToExpiry.data" chart-labels="retention.monthToExpiry.labels"
+                    chart-series="retention.monthToExpiry.series">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 50px">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-heading">
+            <h4>Meter Type ( # of Meters in Transactable Window by Meter Type)</h4>
+          </div>
+          <div class="card-body">
+            <canvas class="chart chart-bar" id="type"
+                    chart-click="retention.onClick"
+                    chart-colors="retention.meterType.colors"
+                    chart-options="retention.meterType.options"
+                    chart-data="retention.meterType.data" chart-labels="retention.meterType.labels"
+                    chart-series="retention.meterType.series">
+            </canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-heading">
+            <h4>Customer Group
+              (# of Meters in Transactable Window by Customer Group)</h4>
+          </div>
+          <div class="card-body">
+            <canvas class="chart chart-bar" id="c_group"
+                    chart-colors="retention.customeGroup.colors"
+                    chart-options="retention.customeGroup.options"
+                    chart-click="retention.onClick"
+                    chart-data="retention.customeGroup.data"
+                    chart-labels="retention.customeGroup.labels"
+                    chart-series="retention.customeGroup.series">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 50px">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-heading">
+            <h4>Cancellation Probability
+              (# of Meters in Transactable Window by Probability of Cancellation in next 3 months)</h4>
+          </div>
+          <div class="card-body">
+            <canvas class="chart chart-bar"
+                    chart-colors="retention.cancellation.colors"
+                    chart-click="retention.onClick"
+                    id="probability" chart-options="retention.cancellation.options"
+                    chart-data="retention.cancellation.data" chart-labels="retention.cancellation.labels"
+                    chart-series="retention.cancellation.series">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 50px">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-heading">
+            <h4>Activity Status
+              ( Sleeping Meters = YTD spend less than $100 for BOL,
+              $500 for MOL & $1000 for TOL)</h4>
+          </div>
+          <div class="card-body">
+            <canvas class="chart chart-bar" id="status"
+                    chart-colors="retention.activityStatus.colors"
+                    chart-options="retention.activityStatus.options"
+                    chart-click="retention.onClick"
+                    chart-data="retention.activityStatus.data"
+                    chart-labels="retention.activityStatus.labels"
+                    chart-series="retention.activityStatus.series">
+            </canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-heading">
+            <h4>Digital Index
+              ( # of Meters by Digital Readiness; Using ML weights &
+              taking Digital Subscription & Presence Parameters)</h4>
+          </div>
+          <div class="card-body">
+            <canvas class="chart chart-bar"
+                    id="d_category"
+                    chart-options="retention.digitalIndex.options"
+                    chart-click="retention.onClick"
+                    chart-colors="retention.digitalIndex.colors"
+                    chart-data="retention.digitalIndex.data"
+                    chart-labels="retention.digitalIndex.labels"
+                    chart-series="retention.digitalIndex.series">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

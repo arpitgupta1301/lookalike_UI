@@ -6,8 +6,10 @@
     'pb.core',
     'pb.ds.prospects',
     'pb.ds.communication',
+    'pb.ds.start',
     'pb.ds.product',
-    'pb.ds.sales'
+    'pb.ds.sales',
+    'pb.ds.retention'
   ]);
 
   // configure debugging
@@ -29,7 +31,7 @@
 
   // UI ROUTER CONFIG
   angular.module('app').config(function ($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/prospects');
+    $urlRouterProvider.otherwise('/start');
   });
 
   angular.module('app').run(
