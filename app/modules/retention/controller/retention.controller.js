@@ -90,11 +90,6 @@
               align: 'start',
               offset: 10
             }
-          },
-          scales: {
-            xAxes: [{
-              barPercentage: 0.4
-            }]
           }
         }
       };
@@ -251,9 +246,18 @@
               if (response.data) {
                 var labels = [];
                 var values = [];
+                var nonPredict = {};
                 for (var key in response.data) {
+                  if (key.indexOf('Predicted') > -1) {
+                    nonPredict[key] = response.data[key];
+                    continue;
+                  }
                   labels.push(key);
                   values.push(response.data[key]);
+                }
+                if (Object.keys(nonPredict).length > 0) {
+                  labels.push(Object.keys(nonPredict)[0]);
+                  values.push(nonPredict[Object.keys(nonPredict)[0]]);
                 }
                 _this.cancellation.data = values;
                 _this.cancellation.labels = labels;
