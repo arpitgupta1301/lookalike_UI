@@ -30,6 +30,7 @@
       ];
 
       _this.commonFilter = {};
+      _this.totalLeases = 0;
       _this.monthToExpiry = {
         labels: ['3M', '6M', '12M', '18M'],
         colors: ['rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)', 'rgba(31,117,254,0.5)'],
@@ -199,13 +200,16 @@
       };
 
       _this.getFilter = function (id) {
-        var filter = {
-          current: id,
-          commonFilter: angular.extend({}, _this.commonFilter)
-        };
-        delete filter.commonFilter[id];
-        console.log(filter);
-        return filter;
+        if (id) {
+          var filter = {
+            current: id,
+            commonFilter: angular.extend({}, _this.commonFilter)
+          };
+          delete filter.commonFilter[id];
+          return filter;
+        } else {
+          return {commonFilter: angular.extend({}, _this.commonFilter)};
+        }
       };
 
       _this.getDataAsPerCurrentFilters = function (id, index) {
@@ -398,6 +402,11 @@
             _this.customeGroup.colors[index] = "rgba(31,117,254,1)";
           });
         }
+
+        // total leases
+        $http.post('https://lookalike-service-temp-dot-datatest-148118.appspot.com/totalLeases', _this.getFilter()).then(function (response) {
+          _this.totalLeases = response.data.count;
+        });
       }
       _this.getDataAsPerCurrentFilters();
     });
